@@ -3,8 +3,8 @@ Commands:
 C:\Github\Ggg\Ggg.ElasticSearch\apps\app-docs\commandLines\elasticCommandLines.js
 //=============================================================================
 Elasticsearch: 
-// cd D:\Programs2\elasticsearch-6.2.1\elasticsearch-6.2.1\bin
 // cd C:\Programs2\elasticsearch-6.2.1\elasticsearch-6.2.1\bin
+// cd D:\Programs2\elasticsearch-6.2.1\elasticsearch-6.2.1\bin
 // .\elasticsearch.bat
 // Invoke-RestMethod http://localhost:9200
 //=============================================================================
