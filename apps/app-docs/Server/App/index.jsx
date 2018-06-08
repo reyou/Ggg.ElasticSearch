@@ -6,7 +6,7 @@ export default class App extends Component {
     constructor() {
         super();
         this.state = {
-            content: null
+            content: <ServerComponents.ServerStatus></ServerComponents.ServerStatus>
         }
         this.onMenuItemClicked = this.onMenuItemClicked.bind(this);
     }
@@ -32,7 +32,7 @@ export default class App extends Component {
         return (
             <div>
                 <SideBar onMenuItemClicked={this.onMenuItemClicked} />
-                {this.state.content}
+                <div className="contentContainer">{this.state.content}</div>
             </div>
         );
     }
