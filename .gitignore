@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+apps/app-docs/Server/hot/hot-update.json
+apps/app-docs/Server/hot/hot-update.js
