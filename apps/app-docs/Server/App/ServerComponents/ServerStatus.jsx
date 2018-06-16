@@ -3,8 +3,8 @@ import request from "request-promise";
 import appSettings from "../AppSettings.jsx";
 let settings = new appSettings();
 export default class ServerStatus extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       response: null
     };
@@ -29,7 +29,7 @@ export default class ServerStatus extends Component {
   render() {
     return (
       <div>
-        <h3>Server Status</h3>
+        <h3>{this.props.title}</h3>
         <pre>{this.state.response}</pre>
       </div>
     );
