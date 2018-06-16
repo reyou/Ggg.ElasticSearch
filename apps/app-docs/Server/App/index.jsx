@@ -10,16 +10,6 @@ export default class App extends Component {
     };
     this.onMenuItemClicked = this.onMenuItemClicked.bind(this);
   }
-  getContentByItem(item) {
-    switch (item.Key) {
-      case "serverStatus":
-        return <ServerComponents.ServerStatus title={item.Title} />;
-      case "indexDocument":
-        return <ServerComponents.IndexDocument title={item.Title} />;
-      default:
-        return null;
-    }
-  }
   loadComponent(item) {
     this.setState({
       content: this.getContentByItem(item)
@@ -35,5 +25,15 @@ export default class App extends Component {
         <div className="contentContainer">{this.state.content}</div>
       </div>
     );
+  }
+  getContentByItem(item) {
+    switch (item.Key) {
+      case "serverStatus":
+        return <ServerComponents.ServerStatus title={item.Title} />;
+      case "indexDocument":
+        return <ServerComponents.IndexDocument title={item.Title} />;
+      default:
+        return null;
+    }
   }
 }
