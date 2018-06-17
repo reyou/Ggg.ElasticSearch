@@ -1,44 +1,68 @@
 import React, { Component } from "react";
 import appSettings from "../AppSettings.jsx";
-import request from "request";
+import request from "request-promise";
+import $ from "jquery";
+import RequestUtilities from "../Utilities/RequestUtilities.js";
+import ResponsePanel from "../Components/ResponsePanel.jsx";
+
 let settings = new appSettings();
 export default class IndexDocument extends Component {
   constructor(props) {
     super(props);
-    this.submit = this.submit.bind(this);
+    this.submitCreate = this.submitCreate.bind(this);
     this.state = {
       response: null
     };
   }
-  submit() {
-    let self = this;
-    let indexName = $("indexName").val();
-    let id = $("id").val();
-    let json = $("json").val();
+  async submitCreate(method) {
+    let indexName = $("#indexName").val();
+    let id = $("#id").val();
+    let json = $("#json").val();
     let url = settings.ServerHost + `/${indexName}/_doc/${id}?pretty`;
     let requestOptions = {
-      method: "PUT",
-      json: json,
-      url: url,
-      headers: {
-        "User-Agent": "request",
-        "Content-Type": "application/json"
-      },
-      rejectUnauthorized: false
+      method: method,
+      json: JSON.parse(json),
+      url: url
     };
-    request(requestOptions, function(error, response, body) {
-      self.setState({
-        url: url,
-        error: JSON.stringify(error),
-        response: JSON.stringify(response),
-        body: JSON.stringify(body)
-      });
-    });
+    RequestUtilities.MakeRequest(this, requestOptions);
+  }
+  async submitDelete() {
+    let indexName = $("#indexName").val();
+    let id = $("#id").val();
+    let url = settings.ServerHost + `/${indexName}/_doc/${id}?pretty`;
+    let requestOptions = {
+      method: "DELETE",
+      url: url
+    };
+    RequestUtilities.MakeRequest(this, requestOptions);
+  }
+  async submitRead() {
+    let indexName = $("#indexName").val();
+    let id = $("#id").val();
+    let url = settings.ServerHost + `/${indexName}/_doc/${id}?pretty`;
+    let requestOptions = {
+      method: "GET",
+      url: url
+    };
+    RequestUtilities.MakeRequest(this, requestOptions);
+  }
+  async componentDidMount() {
+    let response = await request("https://randomuser.me/api/");
+    $("#json").val(response);
   }
   render() {
     return (
-      <div>
+      <div className="contentPanel">
         <h3>{this.props.title}</h3>
+        <p>
+          <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/_updating_documents.html">
+            https://www.elastic.co/guide/en/elasticsearch/reference/current/_updating_documents.html
+          </a>
+          <br />
+          <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/_deleting_documents.html">
+            https://www.elastic.co/guide/en/elasticsearch/reference/current/_deleting_documents.html
+          </a>
+        </p>
         <table>
           <tbody>
             <tr>
@@ -65,21 +89,40 @@ export default class IndexDocument extends Component {
                 <input
                   id="submit"
                   type="button"
-                  value="Submit"
+                  value="Create (POST)"
                   onClick={e => {
-                    this.submit();
+                    this.submitCreate("POST");
+                  }}
+                />
+                <input
+                  id="submit"
+                  type="button"
+                  value="Create (PUT)"
+                  onClick={e => {
+                    this.submitCreate("PUT");
+                  }}
+                />
+                <input
+                  id="submit"
+                  type="button"
+                  value="Read"
+                  onClick={e => {
+                    this.submitRead();
+                  }}
+                />
+                <input
+                  id="submit"
+                  type="button"
+                  value="Delete"
+                  onClick={e => {
+                    this.submitDelete();
                   }}
                 />
               </td>
             </tr>
           </tbody>
         </table>
-        <div className="responsePanel">
-          <pre>url: {this.state.url}</pre>
-          <pre>error: {this.state.error}</pre>
-          <pre>response: {this.state.response}</pre>
-          <pre>body: {this.state.body}</pre>
-        </div>
+        <ResponsePanel state={this.state} />
       </div>
     );
   }

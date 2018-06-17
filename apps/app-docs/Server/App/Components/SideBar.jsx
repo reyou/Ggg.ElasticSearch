@@ -10,8 +10,10 @@ export default class SideBar extends Component {
   }
   getMenuItems() {
     let menuItems = [];
+    menuItems.push(new MenuItem("infoLinks", "Info Links"));
     menuItems.push(new MenuItem("serverStatus", "Server Status"));
-    menuItems.push(new MenuItem("indexDocument", "Index Document"));
+    menuItems.push(new MenuItem("createIndex", "CRUD Index"));
+    menuItems.push(new MenuItem("indexDocument", "CRUD Document"));
     return menuItems;
   }
   menuItemClicked(item) {

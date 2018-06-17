@@ -14,3 +14,10 @@
   float: left;
   border: 1px solid #ccc;
 }
+.contentPanel textarea {
+  width: 1000px;
+  height: 200px;
+}
+.indexContainer td {
+  vertical-align: top;
+}
