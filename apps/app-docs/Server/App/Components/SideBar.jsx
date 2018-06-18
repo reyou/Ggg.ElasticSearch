@@ -14,6 +14,8 @@ export default class SideBar extends Component {
     menuItems.push(new MenuItem("serverStatus", "Server Status"));
     menuItems.push(new MenuItem("createIndex", "CRUD Index"));
     menuItems.push(new MenuItem("indexDocument", "CRUD Document"));
+    menuItems.push(new MenuItem("batchProcessing", "Batch Processing"));
+    menuItems.push(new MenuItem("searchApi", "Search Api"));
     return menuItems;
   }
   menuItemClicked(item) {

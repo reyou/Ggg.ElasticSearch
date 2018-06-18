@@ -8,7 +8,8 @@ export default class CreateIndex extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      response: null
+      response: null,
+      error: null
     };
   }
   async submitCreate() {

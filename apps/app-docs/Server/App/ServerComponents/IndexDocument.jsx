@@ -11,7 +11,8 @@ export default class IndexDocument extends Component {
     super(props);
     this.submitCreate = this.submitCreate.bind(this);
     this.state = {
-      response: null
+      response: null,
+      error: null
     };
   }
   async submitCreate(method) {
@@ -48,7 +49,10 @@ export default class IndexDocument extends Component {
   }
   async componentDidMount() {
     let response = await request("https://randomuser.me/api/");
-    $("#json").val(response);
+    let responseObj = JSON.parse(response);
+    let user = responseObj.results[0];
+    let userString = JSON.stringify(user);
+    $("#json").val(userString);
   }
   render() {
     return (
@@ -68,7 +72,7 @@ export default class IndexDocument extends Component {
             <tr>
               <td>IndexName:</td>
               <td>
-                <input id="indexName" type="text" />
+                <input id="indexName" type="text" defaultValue="qqq" />
               </td>
             </tr>
             <tr>

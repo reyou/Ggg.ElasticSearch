@@ -47,6 +47,10 @@ export default class App extends Component {
         return <ServerComponents.CreateIndex title={item.Title} />;
       case "infoLinks":
         return <ServerComponents.InfoLinks title={item.Title} />;
+      case "batchProcessing":
+        return <ServerComponents.BatchProcessing title={item.Title} />;
+      case "searchApi":
+        return <ServerComponents.SearchApi title={item.Title} />;
       default:
         return null;
     }
