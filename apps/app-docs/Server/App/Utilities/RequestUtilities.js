@@ -20,6 +20,7 @@ export default class RequestUtilities {
         name: null,
         response: responseResult
       });
+      return response;
     } catch (ex) {
       let errorType = typeof ex.error;
       let error = ex.error;

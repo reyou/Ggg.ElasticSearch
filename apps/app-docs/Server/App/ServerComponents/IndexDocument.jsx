@@ -4,7 +4,6 @@ import request from "request-promise";
 import $ from "jquery";
 import RequestUtilities from "../Utilities/RequestUtilities.js";
 import ResponsePanel from "../Components/ResponsePanel.jsx";
-
 let settings = new appSettings();
 export default class IndexDocument extends Component {
   constructor(props) {
@@ -37,6 +36,14 @@ export default class IndexDocument extends Component {
     };
     RequestUtilities.MakeRequest(this, requestOptions);
   }
+  async submitGenerate() {
+    let requestOptions = {
+      method: "GET",
+      url: settings.RandomUserUrl
+    };
+    let response = await RequestUtilities.MakeRequest(this, requestOptions);
+    $("#json").val(response);
+  }
   async submitRead() {
     let indexName = $("#indexName").val();
     let id = $("#id").val();
@@ -48,7 +55,7 @@ export default class IndexDocument extends Component {
     RequestUtilities.MakeRequest(this, requestOptions);
   }
   async componentDidMount() {
-    let response = await request("https://randomuser.me/api/");
+    let response = await request(settings.RandomUserUrl);
     let responseObj = JSON.parse(response);
     let user = responseObj.results[0];
     let userString = JSON.stringify(user);
@@ -72,7 +79,11 @@ export default class IndexDocument extends Component {
             <tr>
               <td>IndexName:</td>
               <td>
-                <input id="indexName" type="text" defaultValue="qqq" />
+                <input
+                  id="indexName"
+                  type="text"
+                  defaultValue={settings.DefaultIndex}
+                />
               </td>
             </tr>
             <tr>
@@ -120,6 +131,14 @@ export default class IndexDocument extends Component {
                   value="Delete"
                   onClick={e => {
                     this.submitDelete();
+                  }}
+                />
+                <input
+                  id="submit"
+                  type="button"
+                  value="Generate User"
+                  onClick={e => {
+                    this.submitGenerate("user");
                   }}
                 />
               </td>

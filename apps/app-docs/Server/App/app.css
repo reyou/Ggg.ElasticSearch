@@ -15,8 +15,11 @@
   border: 1px solid #ccc;
 }
 .contentPanel textarea {
-  width: 1000px;
+  width: 800px;
   height: 200px;
+}
+.contentPanel input[type="text"] {
+  width: 800px;
 }
 .indexContainer td {
   vertical-align: top;
