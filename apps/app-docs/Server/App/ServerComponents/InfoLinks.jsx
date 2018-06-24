@@ -44,16 +44,41 @@ export default class InfoLinks extends Component {
             <tr>
               <td>nodes:</td>
               <td>
+                <a href="http://localhost:9200/_nodes?pretty">
+                  http://localhost:9200/_nodes?pretty
+                </a>
+                <br />
+                <a href="http://localhost:9200/_nodes?filter_path=**.mlockall&pretty">
+                  http://localhost:9200/_nodes?filter_path=**.mlockall&pretty
+                </a>
+                <br />
                 <a href="http://localhost:9200/_cat/nodes?v">
                   http://localhost:9200/_cat/nodes?v
                 </a>
+                <br />
+                <a href="http://localhost:9200/_nodes/stats/process?pretty">
+                  http://localhost:9200/_nodes/stats/process?pretty
+                </a>
+                <br />
+                <a href="http://localhost:9200/_nodes/stats/process?filter_path=**.max_file_descriptors&pretty">
+                  http://localhost:9200/_nodes/stats/process?filter_path=**.max_file_descriptors&pretty
+                </a>
               </td>
             </tr>
+
             <tr>
               <td>indices:</td>
               <td>
                 <a href="http://localhost:9200/_cat/indices?v">
                   http://localhost:9200/_cat/indices?v
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>settings:</td>
+              <td>
+                <a href="http://localhost:9200/_cluster/settings?pretty">
+                  http://localhost:9200/_cluster/settings?pretty
                 </a>
               </td>
             </tr>
