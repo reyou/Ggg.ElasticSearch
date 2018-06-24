@@ -65,12 +65,19 @@ export default class InfoLinks extends Component {
                 </a>
               </td>
             </tr>
-
             <tr>
               <td>indices:</td>
               <td>
                 <a href="http://localhost:9200/_cat/indices?v">
                   http://localhost:9200/_cat/indices?v
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>mapping:</td>
+              <td>
+                <a href="http://localhost:9200/bank*/_mapping?pretty">
+                  http://localhost:9200/bank*/_mapping?pretty
                 </a>
               </td>
             </tr>

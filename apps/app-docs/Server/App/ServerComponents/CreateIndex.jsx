@@ -35,6 +35,10 @@ export default class CreateIndex extends Component {
       <div className="contentPanel">
         <h3>{this.props.title}</h3>
         <p>
+          <a href={settings.ServerHost + "/_cat/indices?v"}>
+            {settings.ServerHost}/_cat/indices?v
+          </a>
+          <br />
           <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/_create_an_index.html">
             https://www.elastic.co/guide/en/elasticsearch/reference/current/_create_an_index.html
           </a>
