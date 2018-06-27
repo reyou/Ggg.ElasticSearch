@@ -1,0 +1,50 @@
+//=============================================================================
+GET /_search?q=elasticsearch&filter_path=took,hits.hits._id,hits.hits._score
+//=============================================================================
+{
+  "took": 1523,
+  "hits": {
+    "hits": [
+      {
+        "_id": "3wTyFCIZRrC5_f-568BVZw_elasticsearch_version_mismatch_967fbe82-a8fd-4b7c-9788-a229d2bd042b-2018-06-27T00:00:37.903Z",
+        "_score": 1.715222
+      },
+      {
+        "_id": "3wTyFCIZRrC5_f-568BVZw_elasticsearch_version_mismatch_6450c862-1637-4c21-94e7-03009a56535c-2018-06-27T00:01:38.456Z",
+        "_score": 1.715222
+      },
+      {
+        "_id": "3wTyFCIZRrC5_f-568BVZw_elasticsearch_version_mismatch_599b730c-664d-40a1-8fb4-2b1fe04c7f5e-2018-06-27T00:02:39.004Z",
+        "_score": 1.715222
+      },
+      {
+        "_id": "3wTyFCIZRrC5_f-568BVZw_elasticsearch_version_mismatch_c5f3487e-2b94-48ab-a1fc-3e8190d59fe5-2018-06-27T00:03:39.558Z",
+        "_score": 1.715222
+      },
+      {
+        "_id": "3wTyFCIZRrC5_f-568BVZw_elasticsearch_version_mismatch_0d2fadaf-fa01-432c-9087-c8f93b4ecf60-2018-06-27T00:05:40.168Z",
+        "_score": 1.715222
+      },
+      {
+        "_id": "3wTyFCIZRrC5_f-568BVZw_elasticsearch_version_mismatch_6e960267-39da-47da-abda-efa99b1a78a0-2018-06-27T00:04:39.618Z",
+        "_score": 1.715222
+      },
+      {
+        "_id": "3wTyFCIZRrC5_f-568BVZw_elasticsearch_version_mismatch_cfbaf698-8599-4cea-af7f-c59aca11ca5e-2018-06-27T00:06:40.727Z",
+        "_score": 1.715222
+      },
+      {
+        "_id": "3wTyFCIZRrC5_f-568BVZw_elasticsearch_version_mismatch_79901627-87e6-43c2-b826-a72b3b3739ea-2018-06-27T00:07:41.279Z",
+        "_score": 1.715222
+      },
+      {
+        "_id": "3wTyFCIZRrC5_f-568BVZw_elasticsearch_version_mismatch_f0825c31-32f7-4527-8a6e-a243f04e6d9e-2018-06-27T00:08:41.830Z",
+        "_score": 1.715222
+      },
+      {
+        "_id": "3wTyFCIZRrC5_f-568BVZw_elasticsearch_version_mismatch_25c23d74-d1cd-4d45-a6bd-5146cf716c3e-2018-06-27T00:09:42.380Z",
+        "_score": 1.715222
+      }
+    ]
+  }
+}

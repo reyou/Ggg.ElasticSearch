@@ -1,0 +1,30 @@
+//=============================================================================
+GET /%3Clogstash-%7Bnow%2Fd%7D%3E/_search
+{
+    "query": {
+        "match_all": {}
+    }
+}
+//=============================================================================
+{ 
+  "error": {
+    "root_cause": [
+      {
+        "type": "index_not_found_exception",
+        "reason": "no such index",
+        "resource.type": "index_or_alias",
+        "resource.id": "logstash-2018.06.27",
+        "index_uuid": "_na_",
+        "index": "logstash-2018.06.27"
+      }
+    ],
+    "type": "index_not_found_exception",
+    "reason": "no such index",
+    "resource.type": "index_or_alias",
+    "resource.id": "logstash-2018.06.27",
+    "index_uuid": "_na_",
+    "index": "logstash-2018.06.27"
+  },
+  "status": 404
+}
+//=============================================================================

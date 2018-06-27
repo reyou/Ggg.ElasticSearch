@@ -1,0 +1,225 @@
+//=============================================================================
+GET /_search?q=elasticsearch&filter_path=took,hits.hits._id,hits.hits._score
+//=============================================================================
+GET /_cluster/state?filter_path=metadata.indices.*.stat*
+//=============================================================================
+{
+  "metadata": {
+    "indices": {
+      "8956456": {
+        "state": "open"
+      },
+      "12344312": {
+        "state": "open"
+      },
+      "fdsgfdg": {
+        "state": "open"
+      },
+      ".watches": {
+        "state": "open"
+      },
+      "aaa": {
+        "state": "open"
+      },
+      "asdfasdfasdfasdf": {
+        "state": "open"
+      },
+      "asdfasdfasdfff": {
+        "state": "open"
+      },
+      "asdfasdfasdfasdfsadf": {
+        "state": "open"
+      },
+      "asdffff": {
+        "state": "open"
+      },
+      "www": {
+        "state": "open"
+      },
+      "12341234asdf": {
+        "state": "open"
+      },
+      "ccc": {
+        "state": "open"
+      },
+      "led": {
+        "state": "open"
+      },
+      ".watcher-history-7-2018.06.25": {
+        "state": "open"
+      },
+      ".monitoring-kibana-6-2018.06.25": {
+        "state": "open"
+      },
+      "test": {
+        "state": "open"
+      },
+      "asdfasdfasdf": {
+        "state": "open"
+      },
+      ".watcher-history-7-2018.06.24": {
+        "state": "open"
+      },
+      "qqqqq": {
+        "state": "open"
+      },
+      "qqq": {
+        "state": "open"
+      },
+      "apm-6.2.1-2018.06.24": {
+        "state": "open"
+      },
+      ".watcher-history-7-2018.06.27": {
+        "state": "open"
+      },
+      "sdaf": {
+        "state": "open"
+      },
+      "gggg": {
+        "state": "open"
+      },
+      "asdfasdfasdff": {
+        "state": "open"
+      },
+      "bank": {
+        "state": "open"
+      },
+      "shakespeare": {
+        "state": "open"
+      },
+      "qqq56": {
+        "state": "open"
+      },
+      ".monitoring-kibana-6-2018.06.26": {
+        "state": "open"
+      },
+      "asdff": {
+        "state": "open"
+      },
+      "logstash-2015.05.19": {
+        "state": "open"
+      },
+      ".reporting-2018.06.24": {
+        "state": "open"
+      },
+      "metricbeat-6.2.1-2018.06.26": {
+        "state": "open"
+      },
+      "qqqq": {
+        "state": "open"
+      },
+      "sadfasdf": {
+        "state": "open"
+      },
+      ".kibana": {
+        "state": "open"
+      },
+      "sadfasdfasdf": {
+        "state": "open"
+      },
+      "sadfsdafasdf": {
+        "state": "open"
+      },
+      "metricbeat-6.2.1-2018.06.24": {
+        "state": "open"
+      },
+      "ggg": {
+        "state": "open"
+      },
+      "searchapi": {
+        "state": "open"
+      },
+      "qqq341234": {
+        "state": "open"
+      },
+      ".monitoring-kibana-6-2018.06.24": {
+        "state": "open"
+      },
+      "fassdfasdf": {
+        "state": "open"
+      },
+      "metricbeat-6.2.1-2018.06.25": {
+        "state": "open"
+      },
+      "fsadfdsafsdafasdf": {
+        "state": "open"
+      },
+      "edanamrecipes": {
+        "state": "open"
+      },
+      "qqq2": {
+        "state": "open"
+      },
+      "asdfffff": {
+        "state": "open"
+      },
+      "sadfsadf": {
+        "state": "open"
+      },
+      ".watcher-history-7-2018.06.26": {
+        "state": "open"
+      },
+      ".monitoring-kibana-6-2018.06.27": {
+        "state": "open"
+      },
+      "sadfasdfasdfasdf1": {
+        "state": "open"
+      },
+      ".monitoring-es-6-2018.06.26": {
+        "state": "open"
+      },
+      "logstash-2015.05.20": {
+        "state": "open"
+      },
+      "asdfasdf": {
+        "state": "open"
+      },
+      "asdffff112": {
+        "state": "open"
+      },
+      "qqq123123123123": {
+        "state": "open"
+      },
+      "customer": {
+        "state": "open"
+      },
+      "sadfasdfasdfasdf": {
+        "state": "open"
+      },
+      ".monitoring-es-6-2018.06.27": {
+        "state": "open"
+      },
+      ".monitoring-alerts-6": {
+        "state": "open"
+      },
+      "logstash-2015.05.18": {
+        "state": "open"
+      },
+      ".monitoring-es-6-2018.06.25": {
+        "state": "open"
+      },
+      "aa": {
+        "state": "open"
+      },
+      "sadf": {
+        "state": "open"
+      },
+      ".triggered_watches": {
+        "state": "open"
+      },
+      "asdfasdfasdfasdfasdf": {
+        "state": "open"
+      },
+      ".monitoring-es-6-2018.06.24": {
+        "state": "open"
+      },
+      "fff": {
+        "state": "open"
+      },
+      "asdf": {
+        "state": "open"
+      }
+    }
+  }
+}
+//=============================================================================
