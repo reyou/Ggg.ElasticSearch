@@ -1,0 +1,59 @@
+//=============================================================================
+POST updateapi/_doc/1/_update
+{
+    "script" : {
+        "source": "ctx._source.tags.add(params.tag)",
+        "lang": "painless",
+        "params" : {
+            "tag" : "blue"
+        }
+    }
+}
+//=============================================================================
+{
+  "_index": "updateapi",
+  "_type": "_doc",
+  "_id": "1",
+  "_version": 3,
+  "result": "updated",
+  "_shards": {
+    "total": 2,
+    "successful": 1,
+    "failed": 0
+  },
+  "_seq_no": 2,
+  "_primary_term": 1
+}
+//=============================================================================
+GET updateapi/_search
+//=============================================================================
+{
+  "took": 0,
+  "timed_out": false,
+  "_shards": {
+    "total": 5,
+    "successful": 5,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": 1,
+    "max_score": 1,
+    "hits": [
+      {
+        "_index": "updateapi",
+        "_type": "_doc",
+        "_id": "1",
+        "_score": 1,
+        "_source": {
+          "counter": 5,
+          "tags": [
+            "red",
+            "blue"
+          ]
+        }
+      }
+    ]
+  }
+}
+//=============================================================================

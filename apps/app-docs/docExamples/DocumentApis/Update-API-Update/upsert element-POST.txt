@@ -1,0 +1,52 @@
+//=============================================================================
+If the document does not already exist, the contents of the upsert element 
+will be inserted as a new document. If the document does exist, then 
+the script will be executed instead:
+//=============================================================================
+POST updateapi/_doc/1/_update
+{
+    "script" : {
+        "source": "ctx._source.counter += params.count",
+        "lang": "painless",
+        "params" : {
+            "count" : 4
+        }
+    },
+    "upsert" : {
+        "counter" : 1
+    }
+}
+//=============================================================================
+{
+  "_index": "updateapi",
+  "_type": "_doc",
+  "_id": "1",
+  "_version": 7,
+  "result": "updated",
+  "_shards": {
+    "total": 2,
+    "successful": 1,
+    "failed": 0
+  },
+  "_seq_no": 6,
+  "_primary_term": 1
+}
+//=============================================================================
+GET updateapi/_doc/1
+//=============================================================================
+{
+  "_index": "updateapi",
+  "_type": "_doc",
+  "_id": "1",
+  "_version": 7,
+  "found": true,
+  "_source": {
+    "counter": 9,
+    "tags": [
+      "red",
+      "blue"
+    ],
+    "name": "new_name"
+  }
+}
+//=============================================================================

@@ -1,0 +1,29 @@
+//=============================================================================
+And, we can even change the operation that is executed. This example deletes 
+the doc if the tags field contain green, otherwise it does nothing (noop):
+//=============================================================================
+POST updateapi/_doc/1/_update
+{
+    "script" : {
+        "source": "if (ctx._source.tags.contains(params.tag)) { ctx.op = 'delete' } else { ctx.op = 'none' }",
+        "lang": "painless",
+        "params" : {
+            "tag" : "green"
+        }
+    }
+}
+//=============================================================================
+{
+  "_index": "updateapi",
+  "_type": "_doc",
+  "_id": "1",
+  "_version": 5,
+  "result": "noop",
+  "_shards": {
+    "total": 0,
+    "successful": 0,
+    "failed": 0
+  }
+}
+//=============================================================================
+

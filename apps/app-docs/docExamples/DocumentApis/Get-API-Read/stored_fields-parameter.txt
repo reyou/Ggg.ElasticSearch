@@ -1,0 +1,120 @@
+//=============================================================================
+PUT twitterwithmapping
+{
+   "mappings": {
+      "_doc": {
+         "properties": {
+            "counter": {
+               "type": "integer",
+               "store": false
+            },
+            "tags": {
+               "type": "keyword",
+               "store": true
+            }
+         }
+      }
+   }
+}
+//=============================================================================
+{
+  "acknowledged": true,
+  "shards_acknowledged": true,
+  "index": "twitterwithmapping"
+}
+//=============================================================================
+PUT twitterwithmapping/_doc/1
+{
+    "counter" : 1,
+    "tags" : ["red"]
+}
+//=============================================================================
+{
+  "_index": "twitterwithmapping",
+  "_type": "_doc",
+  "_id": "1",
+  "_version": 1,
+  "result": "created",
+  "_shards": {
+    "total": 2,
+    "successful": 1,
+    "failed": 0
+  },
+  "_seq_no": 0,
+  "_primary_term": 1
+}
+//=============================================================================
+GET twitterwithmapping/_doc/1?stored_fields=tags,counter
+//=============================================================================
+{
+  "_index": "twitterwithmapping",
+  "_type": "_doc",
+  "_id": "1",
+  "_version": 2,
+  "found": true,
+  "fields": {
+    "tags": [
+      "red"
+    ]
+  }
+}
+//=============================================================================
+GET twitterwithmapping/_doc/1
+//=============================================================================
+{
+  "_index": "twitterwithmapping",
+  "_type": "_doc",
+  "_id": "1",
+  "_version": 2,
+  "found": true,
+  "_source": {
+    "counter": 1,
+    "tags": [
+      "red"
+    ]
+  }
+}
+//=============================================================================
+PUT twitterwithmapping/_doc/2
+{
+    "counter" : 1,
+    "keywords": ["red", "hamburger", "pizza"],
+    "tags" : ["red"]
+}
+//=============================================================================
+GET twitterwithmapping/_search/
+//=============================================================================
+PUT twitterwithmapping/_doc/3
+{
+    "counter" : 1,
+    "keywords": ["red", "hamburger", "pizza"],
+    "tags" : "this is inserting as well"
+}
+//=============================================================================
+GET twitterwithmapping/_search/
+//=============================================================================
+PUT twitterwithmapping/_doc/4
+{
+    "counter" : "this should throw error",
+    "keywords": ["red", "hamburger", "pizza"],
+    "tags" : "error yes!"
+}
+//=============================================================================
+{
+  "error": {
+    "root_cause": [
+      {
+        "type": "mapper_parsing_exception",
+        "reason": "failed to parse [counter]"
+      }
+    ],
+    "type": "mapper_parsing_exception",
+    "reason": "failed to parse [counter]",
+    "caused_by": {
+      "type": "number_format_exception",
+      "reason": "For input string: \"this should throw error\""
+    }
+  },
+  "status": 400
+}
+//=============================================================================

@@ -1,0 +1,40 @@
+//=============================================================================
+Instead of sending a partial doc plus an upsert doc, setting doc_as_upsert 
+to true will use the contents of doc as the upsert value:
+//=============================================================================
+POST updateapi/_doc/2/_update
+{
+    "doc" : {
+        "name" : "new_name"
+    },
+    "doc_as_upsert" : true
+}
+//=============================================================================
+{
+  "_index": "updateapi",
+  "_type": "_doc",
+  "_id": "2",
+  "_version": 1,
+  "result": "created",
+  "_shards": {
+    "total": 2,
+    "successful": 1,
+    "failed": 0
+  },
+  "_seq_no": 0,
+  "_primary_term": 1
+}
+//=============================================================================
+GET updateapi/_doc/2
+//=============================================================================
+{
+  "_index": "updateapi",
+  "_type": "_doc",
+  "_id": "2",
+  "_version": 1,
+  "found": true,
+  "_source": {
+    "name": "new_name"
+  }
+}
+//=============================================================================

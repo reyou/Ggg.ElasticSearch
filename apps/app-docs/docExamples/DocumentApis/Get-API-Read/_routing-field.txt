@@ -1,0 +1,38 @@
+//=============================================================================
+PUT twitterwithmapping/_doc/2?routing=user1
+{
+    "counter" : 1,
+    "tags" : ["white"]
+}
+//=============================================================================
+{
+  "_index": "twitterwithmapping",
+  "_type": "_doc",
+  "_id": "2",
+  "_version": 2,
+  "result": "updated",
+  "_shards": {
+    "total": 2,
+    "successful": 1,
+    "failed": 0
+  },
+  "_seq_no": 1,
+  "_primary_term": 1
+}
+//=============================================================================
+GET twitterwithmapping/_doc/2?routing=user1&stored_fields=tags,counter
+//=============================================================================
+{
+  "_index": "twitterwithmapping",
+  "_type": "_doc",
+  "_id": "2",
+  "_version": 2,
+  "_routing": "user1",
+  "found": true,
+  "fields": {
+    "tags": [
+      "white"
+    ]
+  }
+}
+//=============================================================================

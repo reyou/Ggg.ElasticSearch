@@ -1,0 +1,43 @@
+//=============================================================================
+It’s also possible to delete documents of multiple indexes and multiple types 
+at once, just like the search API:
+//=============================================================================
+PUT twitter/_doc/12345
+{
+    "user" : "kimchy",
+    "post_date" : "2009-11-15T14:12:12",
+    "message" : "trying out Elasticsearch"
+}
+//=============================================================================
+PUT blog/_doc/12345
+{
+    "user" : "kimchy",
+    "post_date" : "2009-11-15T14:12:12",
+    "message" : "trying out Elasticsearch"
+}
+//=============================================================================
+POST twitter,blog/_docs,post/_delete_by_query
+{
+  "query": {
+    "match_all": {}
+  }
+}
+//=============================================================================
+{
+  "took": 0,
+  "timed_out": false,
+  "total": 0,
+  "deleted": 0,
+  "batches": 0,
+  "version_conflicts": 0,
+  "noops": 0,
+  "retries": {
+    "bulk": 0,
+    "search": 0
+  },
+  "throttled_millis": 0,
+  "requests_per_second": -1,
+  "throttled_until_millis": 0,
+  "failures": []
+}
+//=============================================================================
