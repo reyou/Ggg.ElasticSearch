@@ -1,0 +1,56 @@
+The flat_settings flag affects rendering of the lists of settings. 
+When flat_settings flag is true settings are returned in a flat format:
+//=============================================================================
+GET bank/_settings
+//=============================================================================
+{
+  "bank": {
+    "settings": {
+      "index": {
+        "creation_date": "1529632821253",
+        "number_of_shards": "5",
+        "number_of_replicas": "1",
+        "uuid": "wnIhAGuFStyvA18aDUrDDw",
+        "version": {
+          "created": "6020199"
+        },
+        "provided_name": "bank"
+      }
+    }
+  }
+}
+//=============================================================================
+GET bank/_settings?flat_settings=true
+//=============================================================================
+{
+  "bank": {
+    "settings": {
+      "index.creation_date": "1529632821253",
+      "index.number_of_replicas": "1",
+      "index.number_of_shards": "5",
+      "index.provided_name": "bank",
+      "index.uuid": "wnIhAGuFStyvA18aDUrDDw",
+      "index.version.created": "6020199"
+    }
+  }
+}
+//=============================================================================
+GET bank/_settings?flat_settings=false
+//=============================================================================
+{
+  "bank": {
+    "settings": {
+      "index": {
+        "creation_date": "1529632821253",
+        "number_of_shards": "5",
+        "number_of_replicas": "1",
+        "uuid": "wnIhAGuFStyvA18aDUrDDw",
+        "version": {
+          "created": "6020199"
+        },
+        "provided_name": "bank"
+      }
+    }
+  }
+}
+//=============================================================================

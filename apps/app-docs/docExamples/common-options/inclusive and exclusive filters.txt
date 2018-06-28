@@ -1,0 +1,12 @@
+GET /_cluster/state?filter_path=metadata.indices.*.state,-metadata.indices.logstash-*
+//=============================================================================
+{
+  "metadata" : {
+    "indices" : {
+      "index-1" : {"state" : "open"},
+      "index-2" : {"state" : "open"},
+      "index-3" : {"state" : "open"}
+    }
+  }
+}
+//=============================================================================

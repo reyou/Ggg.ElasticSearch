@@ -1,0 +1,12 @@
+Enabling stack traces
+By default when a request returns an error Elasticsearch doesn’t include the 
+stack trace of the error. You can enable that behavior by setting the 
+error_trace url parameter to true. For example, by default when you send 
+an invalid size parameter to the _search API:
+//=============================================================================
+POST /bank/_search?size=surprise_me
+//=============================================================================
+POST /bank/_search?size=surprise_me&error_trace=true
+//=============================================================================
+POST /bank/_search?size=3&error_trace=true
+//=============================================================================

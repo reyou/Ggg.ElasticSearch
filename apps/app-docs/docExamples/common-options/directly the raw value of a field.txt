@@ -1,0 +1,49 @@
+POST /library/book?refresh
+{"title": "Book #1", "rating": 200.1}
+//=============================================================================
+POST /library/book?refresh
+{"title": "Book #2", "rating": 1.7}
+//=============================================================================
+POST /library/book?refresh
+{"title": "Book #3", "rating": 0.1}
+//=============================================================================
+{
+  "_index": "library",
+  "_type": "book",
+  "_id": "LLEyP2QBsPZR2bz64XNp",
+  "_version": 1,
+  "result": "created",
+  "forced_refresh": true,
+  "_shards": {
+    "total": 2,
+    "successful": 1,
+    "failed": 0
+  },
+  "_seq_no": 0,
+  "_primary_term": 1
+}
+//=============================================================================
+GET /_search?filter_path=hits.hits._source&_source=title&sort=rating:desc
+//=============================================================================
+{
+  "hits": {
+    "hits": [
+      {
+        "_source": {
+          "title": "Book #1"
+        }
+      },
+      {
+        "_source": {
+          "title": "Book #2"
+        }
+      },
+      {
+        "_source": {
+          "title": "Book #3"
+        }
+      }
+    ]
+  }
+}
+//=============================================================================
