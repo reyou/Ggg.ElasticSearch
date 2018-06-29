@@ -1,0 +1,124 @@
+//=============================================================================
+Say you created an index without dynamic mapping, filled it with data, and 
+then added a mapping value to pick up more fields from the data:
+//=============================================================================
+DELETE test
+//=============================================================================
+dynamic: false 
+This means that new fields won’t be indexed, just stored in _source.
+//=============================================================================
+PUT test
+{
+  "mappings": {
+    "_doc": {
+      "dynamic": false,   
+      "properties": {
+        "text": {"type": "text"}
+      }
+    }
+  }
+}
+//=============================================================================
+POST test/_doc?refresh
+{
+  "text": "words words",
+  "flag": "bar"
+}
+//=============================================================================
+POST test/_doc?refresh
+{
+  "text": "words words",
+  "flag": "foo"
+}
+//=============================================================================
+GET test/_mapping
+//=============================================================================
+This updates the mapping to add the new flag field. To pick up the new field 
+you have to reindex all documents with it.
+//=============================================================================
+PUT test/_mapping/_doc   
+{
+  "properties": {
+    "text": {"type": "text"},
+    "flag": {"type": "text", "analyzer": "keyword"}
+  }
+}
+//=============================================================================
+GET test/_mapping
+//=============================================================================
+{
+  "test": {
+    "mappings": {
+      "_doc": {
+        "dynamic": "false",
+        "properties": {
+          "flag": {
+            "type": "text",
+            "analyzer": "keyword"
+          },
+          "text": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  }
+}
+//=============================================================================
+Searching for the data won’t find anything:
+//=============================================================================
+POST test/_search?filter_path=hits.total
+{
+  "query": {
+    "match": {
+      "flag": "foo"
+    }
+  }
+}
+//=============================================================================
+{
+  "hits": {
+    "total": 0
+  }
+}
+//=============================================================================
+But you can issue an _update_by_query request to pick up the new mapping:
+//=============================================================================
+POST test/_update_by_query?refresh&conflicts=proceed
+//=============================================================================
+{
+  "took": 149,
+  "timed_out": false,
+  "total": 2,
+  "updated": 2,
+  "deleted": 0,
+  "batches": 1,
+  "version_conflicts": 0,
+  "noops": 0,
+  "retries": {
+    "bulk": 0,
+    "search": 0
+  },
+  "throttled_millis": 0,
+  "requests_per_second": -1,
+  "throttled_until_millis": 0,
+  "failures": []
+}
+//=============================================================================
+POST test/_search?filter_path=hits.total
+{
+  "query": {
+    "match": {
+      "flag": "foo"
+    }
+  }
+}
+//=============================================================================
+{
+  "hits": {
+    "total": 1
+  }
+}
+//=============================================================================
+You can do the exact same thing when adding a field to a multifield.
+//=============================================================================

@@ -1,0 +1,31 @@
+//=============================================================================
+Settings op_type to create will cause _reindex to only create missing 
+documents in the target index. All existing documents will cause a version 
+conflict:
+//=============================================================================
+POST _reindex
+{
+  "source": {
+    "index": "twitter"
+  },
+  "dest": {
+    "index": "new_twitter",
+    "op_type": "create"
+  }
+}
+//=============================================================================
+By default version conflicts abort the _reindex process but you can just count 
+them by settings "conflicts": "proceed" in the request body:
+//=============================================================================
+POST _reindex
+{
+  "conflicts": "proceed",
+  "source": {
+    "index": "twitter"
+  },
+  "dest": {
+    "index": "new_twitter",
+    "op_type": "create"
+  }
+}
+//=============================================================================

@@ -1,0 +1,20 @@
+//=============================================================================
+You can limit the documents by adding a type to the source or by adding a 
+query. This will only copy tweets made by kimchy into new_twitter:
+//=============================================================================
+POST _reindex
+{
+  "source": {
+    "index": "twitter",
+    "type": "_doc",
+    "query": {
+      "term": {
+        "user": "kimchy"
+      }
+    }
+  },
+  "dest": {
+    "index": "new_twitter"
+  }
+}
+//=============================================================================

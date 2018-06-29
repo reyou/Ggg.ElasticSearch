@@ -1,0 +1,17 @@
+//=============================================================================
+Alternatively, you can specify the stored_fields parameter in the query 
+string as a default to be applied to all documents.
+//=============================================================================
+GET /test/type/_mget?stored_fields=field1,field2
+{
+    "docs" : [
+        {
+            "_id" : "1" 
+        },
+        {
+            "_id" : "2",
+            "stored_fields" : ["field3", "field4"] 
+        }
+    ]
+}
+//=============================================================================

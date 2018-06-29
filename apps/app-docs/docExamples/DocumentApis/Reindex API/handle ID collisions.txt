@@ -1,0 +1,16 @@
+//=============================================================================
+The Reindex API makes no effort to handle ID collisions. For such issues, 
+the target index will remain valid, but it’s not easy to predict which 
+document will survive because the iteration order isn’t well defined.
+//=============================================================================
+POST _reindex
+{
+  "source": {
+    "index": ["twitter", "blog"],
+    "type": ["_doc", "post"]
+  },
+  "dest": {
+    "index": "all_together"
+  }
+}
+//=============================================================================

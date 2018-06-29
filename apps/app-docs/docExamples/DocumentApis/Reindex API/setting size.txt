@@ -1,0 +1,15 @@
+//=============================================================================
+It’s also possible to limit the number of processed documents by setting size. 
+This will only copy a single document from twitter to new_twitter:
+//=============================================================================
+POST _reindex
+{
+  "size": 1,
+  "source": {
+    "index": "twitter"
+  },
+  "dest": {
+    "index": "new_twitter"
+  }
+}
+//=============================================================================

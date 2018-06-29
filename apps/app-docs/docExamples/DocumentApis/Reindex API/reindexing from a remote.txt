@@ -1,0 +1,78 @@
+//=============================================================================
+This feature should work with remote clusters of any version of Elasticsearch 
+you are likely to find. This should allow you to upgrade from any version of 
+Elasticsearch to the current version by reindexing from a cluster of the 
+old version.
+To enable queries sent to older versions of Elasticsearch the query parameter 
+is sent directly to the remote host without validation or modification.
+//=============================================================================
+POST _reindex
+{
+  "source": {
+    "remote": {
+      "host": "http://otherhost:9200",
+      "username": "user",
+      "password": "pass"
+    },
+    "index": "source",
+    "query": {
+      "match": {
+        "test": "data"
+      }
+    }
+  },
+  "dest": {
+    "index": "dest"
+  }
+}
+//=============================================================================
+Reindexing from a remote server uses an on-heap buffer that defaults to a 
+maximum size of 100mb. If the remote index includes very large documents 
+you’ll need to use a smaller batch size. The example below sets the batch 
+size to 10 which is very, very small.
+//=============================================================================
+POST _reindex
+{
+  "source": {
+    "remote": {
+      "host": "http://otherhost:9200"
+    },
+    "index": "source",
+    "size": 10,
+    "query": {
+      "match": {
+        "test": "data"
+      }
+    }
+  },
+  "dest": {
+    "index": "dest"
+  }
+}
+//=============================================================================
+It is also possible to set the socket read timeout on the remote connection 
+with the socket_timeout field and the connection timeout with the 
+connect_timeout field. Both default to 30 seconds. 
+This example sets the socket read timeout to one minute and the connection 
+timeout to 10 seconds:
+//=============================================================================
+POST _reindex
+{
+  "source": {
+    "remote": {
+      "host": "http://otherhost:9200",
+      "socket_timeout": "1m",
+      "connect_timeout": "10s"
+    },
+    "index": "source",
+    "query": {
+      "match": {
+        "test": "data"
+      }
+    }
+  },
+  "dest": {
+    "index": "dest"
+  }
+}
+//=============================================================================

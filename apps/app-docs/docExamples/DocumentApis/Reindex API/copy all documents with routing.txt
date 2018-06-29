@@ -1,0 +1,21 @@
+//=============================================================================
+For example, you can use the following request to copy all documents from 
+the source index with the company name cat into the dest index with routing 
+set to cat.
+//=============================================================================
+POST _reindex
+{
+  "source": {
+    "index": "source",
+    "query": {
+      "match": {
+        "company": "cat"
+      }
+    }
+  },
+  "dest": {
+    "index": "dest",
+    "routing": "=cat"
+  }
+}
+//=============================================================================

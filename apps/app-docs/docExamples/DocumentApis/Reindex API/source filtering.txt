@@ -1,0 +1,16 @@
+//=============================================================================
+The source section supports all the elements that are supported in a search 
+request. For instance, only a subset of the fields from the original 
+documents can be reindexed using source filtering as follows:
+//=============================================================================
+POST _reindex
+{
+  "source": {
+    "index": "twitter",
+    "_source": ["user", "_doc"]
+  },
+  "dest": {
+    "index": "new_twitter"
+  }
+}
+//=============================================================================

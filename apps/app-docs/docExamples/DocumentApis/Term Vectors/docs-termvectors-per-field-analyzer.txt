@@ -1,0 +1,42 @@
+//=============================================================================
+GET /twitter/_doc/_termvectors
+{
+  "doc" : {
+    "fullname" : "John Doe",
+    "text" : "twitter test test test"
+  },
+  "fields": ["fullname"],
+  "per_field_analyzer" : {
+    "fullname": "keyword"
+  }
+}
+//=============================================================================
+{
+  "_index": "twitter",
+  "_type": "_doc",
+  "_version": 0,
+  "found": true,
+  "took": 0,
+  "term_vectors": {
+    "fullname": {
+      "field_statistics": {
+        "sum_doc_freq": 4,
+        "doc_count": 2,
+        "sum_ttf": 4
+      },
+      "terms": {
+        "John Doe": {
+          "term_freq": 1,
+          "tokens": [
+            {
+              "position": 0,
+              "start_offset": 0,
+              "end_offset": 8
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+//=============================================================================

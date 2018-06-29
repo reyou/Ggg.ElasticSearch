@@ -1,0 +1,68 @@
+//=============================================================================
+GET /twitter/_doc/1/_termvectors
+{
+  "fields" : ["text", "some_field_without_term_vectors"],
+  "offsets" : true,
+  "positions" : true,
+  "term_statistics" : true,
+  "field_statistics" : true
+}
+//=============================================================================
+{
+  "_index": "twitter",
+  "_type": "_doc",
+  "_id": "1",
+  "_version": 1,
+  "found": true,
+  "took": 0,
+  "term_vectors": {
+    "text": {
+      "field_statistics": {
+        "sum_doc_freq": 6,
+        "doc_count": 2,
+        "sum_ttf": 8
+      },
+      "terms": {
+        "test": {
+          "doc_freq": 2,
+          "ttf": 4,
+          "term_freq": 3,
+          "tokens": [
+            {
+              "position": 1,
+              "start_offset": 8,
+              "end_offset": 12,
+              "payload": "d29yZA=="
+            },
+            {
+              "position": 2,
+              "start_offset": 13,
+              "end_offset": 17,
+              "payload": "d29yZA=="
+            },
+            {
+              "position": 3,
+              "start_offset": 18,
+              "end_offset": 22,
+              "payload": "d29yZA=="
+            }
+          ]
+        },
+        "twitter": {
+          "doc_freq": 2,
+          "ttf": 2,
+          "term_freq": 1,
+          "tokens": [
+            {
+              "position": 0,
+              "start_offset": 0,
+              "end_offset": 7,
+              "payload": "d29yZA=="
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+//=============================================================================
