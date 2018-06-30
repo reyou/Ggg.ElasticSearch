@@ -1,0 +1,22 @@
+In the example below the field price has multiple prices per document. 
+In this case the result hits will be sorted by price ascending based 
+on the average price per document.
+//=============================================================================
+DELETE /my_index/
+//=============================================================================
+PUT /my_index/_doc/1?refresh
+{
+   "product": "chocolate",
+   "price": [20, 4]
+}
+//=============================================================================
+POST /my_index/_search
+{
+   "query" : {
+      "term" : { "product" : "chocolate" }
+   },
+   "sort" : [
+      {"price" : {"order" : "asc", "mode" : "avg"}}
+   ]
+}
+//=============================================================================

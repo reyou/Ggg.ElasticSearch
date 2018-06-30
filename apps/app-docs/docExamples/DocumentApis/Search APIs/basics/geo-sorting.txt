@@ -1,0 +1,21 @@
+Allow to sort by _geo_distance. Here is an example, assuming pin.location 
+is a field of type geo_point:
+//=============================================================================
+GET /_search
+{
+    "sort" : [
+        {
+            "_geo_distance" : {
+                "pin.location" : [-70, 40],
+                "order" : "asc",
+                "unit" : "km",
+                "mode" : "min",
+                "distance_type" : "arc"
+            }
+        }
+    ],
+    "query" : {
+        "term" : { "user" : "kimchy" }
+    }
+}
+//=============================================================================

@@ -1,0 +1,39 @@
+Assuming the following index mapping:
+//=============================================================================
+PUT /my_index
+{
+    "mappings": {
+        "_doc": {
+            "properties": {
+                "post_date": { "type": "date" },
+                "user": {
+                    "type": "keyword"
+                },
+                "name": {
+                    "type": "keyword"
+                },
+                "age": { "type": "integer" }
+            }
+        }
+    }
+}
+//=============================================================================
+POST /my_index/_doc
+{
+    "user": "kimchy"
+}
+//=============================================================================
+GET /my_index/_search
+{
+    "sort" : [
+        { "post_date" : {"order" : "asc"}},
+        "user",
+        { "name" : "desc" },
+        { "age" : "desc" },
+        "_score"
+    ],
+    "query" : {
+        "term" : { "user" : "kimchy" }
+    }
+}
+//=============================================================================

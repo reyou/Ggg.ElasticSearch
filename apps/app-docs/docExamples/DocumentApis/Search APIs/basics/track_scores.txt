@@ -1,0 +1,16 @@
+When sorting on a field, scores are not computed. By setting 
+track_scores to true, scores will still be computed and tracked.
+//=============================================================================
+GET /_search
+{
+    "track_scores": true,
+    "sort" : [
+        { "post_date" : {"order" : "desc"} },
+        { "name" : "desc" },
+        { "age" : "desc" }
+    ],
+    "query" : {
+        "term" : { "user" : "kimchy" }
+    }
+}
+//=============================================================================

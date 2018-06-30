@@ -1,0 +1,66 @@
+//=============================================================================
+These will create a document and immediately refresh the index so it is visible:
+//=============================================================================
+PUT /test/_doc/1?refresh
+{"test": "test"}
+PUT /test/_doc/2?refresh=true
+{"test": "test"}
+//=============================================================================
+{
+  "_index": "test",
+  "_type": "_doc",
+  "_id": "2",
+  "_version": 1,
+  "result": "created",
+  "forced_refresh": true,
+  "_shards": {
+    "total": 2,
+    "successful": 1,
+    "failed": 0
+  },
+  "_seq_no": 6,
+  "_primary_term": 1
+}
+//=============================================================================
+These will create a document without doing anything to make it visible for search:
+//=============================================================================
+PUT /test/_doc/3
+{"test": "test"}
+PUT /test/_doc/4?refresh=false
+{"test": "test"}
+//=============================================================================
+{
+  "_index": "test",
+  "_type": "_doc",
+  "_id": "4",
+  "_version": 1,
+  "result": "created",
+  "_shards": {
+    "total": 2,
+    "successful": 1,
+    "failed": 0
+  },
+  "_seq_no": 7,
+  "_primary_term": 1
+}
+//=============================================================================
+This will create a document and wait for it to become visible for search:
+//=============================================================================
+PUT /test/_doc/4?refresh=wait_for
+{"test": "test"}
+//=============================================================================
+{
+  "_index": "test",
+  "_type": "_doc",
+  "_id": "4",
+  "_version": 2,
+  "result": "updated",
+  "_shards": {
+    "total": 2,
+    "successful": 1,
+    "failed": 0
+  },
+  "_seq_no": 8,
+  "_primary_term": 1
+}
+//=============================================================================

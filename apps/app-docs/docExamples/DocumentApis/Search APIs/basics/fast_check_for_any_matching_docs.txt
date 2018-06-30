@@ -1,0 +1,8 @@
+In case we only want to know if there are any documents matching 
+a specific query, we can set the size to 0 to indicate that we 
+are not interested in the search results. Also we can set terminate_after 
+to 1 to indicate that the query execution can be terminated whenever 
+the first matching document was found (per shard).
+//=============================================================================
+GET /_search?q=message:number&size=0&terminate_after=1
+//=============================================================================

@@ -1,0 +1,71 @@
+In the below example offer is a field of type nested. 
+The nested path needs to be specified; otherwise, Elasticsearch doesn’t 
+know on what nested level sort values need to be captured.
+//=============================================================================
+POST /_search
+{
+   "query" : {
+      "term" : { "product" : "chocolate" }
+   },
+   "sort" : [
+       {
+          "offer.price" : {
+             "mode" :  "avg",
+             "order" : "asc",
+             "nested": {
+                "path": "offer",
+                "filter": {
+                   "term" : { "offer.color" : "blue" }
+                }
+             }
+          }
+       }
+    ]
+}
+//=============================================================================
+In the below example parent and child fields are of type nested. 
+The nested_path needs to be specified at each level; otherwise, Elasticsearch 
+doesn’t know on what nested level sort values need to be captured.
+//=============================================================================
+POST /_search
+{
+   "query": {
+      "nested": {
+         "path": "parent",
+         "query": {
+            "bool": {
+                "must": {"range": {"parent.age": {"gte": 21}}},
+                "filter": {
+                    "nested": {
+                        "path": "parent.child",
+                        "query": {"match": {"parent.child.name": "matt"}}
+                    }
+                }
+            }
+         }
+      }
+   },
+   "sort" : [
+      {
+         "parent.child.age" : {
+            "mode" :  "min",
+            "order" : "asc",
+            "nested": {
+               "path": "parent",
+               "filter": {
+                  "range": {"parent.age": {"gte": 21}}
+               },
+               "nested": {
+                  "path": "parent.child",
+                  "filter": {
+                     "match": {"parent.child.name": "matt"}
+                  }
+               }
+            }
+         }
+      }
+   ]
+}
+//=============================================================================
+
+

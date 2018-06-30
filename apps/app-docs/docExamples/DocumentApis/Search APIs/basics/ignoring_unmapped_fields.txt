@@ -1,0 +1,17 @@
+Ignoring Unmapped Fieldsedit
+By default, the search request will fail if there is no mapping 
+associated with a field. The unmapped_type option allows to 
+ignore fields that have no mapping and not sort by them. 
+The value of this parameter is used to determine what sort 
+values to emit. Here is an example of how it can be used:
+//=============================================================================
+GET /_search
+{
+    "sort" : [
+        { "price" : {"unmapped_type" : "long"} }
+    ],
+    "query" : {
+        "term" : { "product" : "chocolate" }
+    }
+}
+//=============================================================================

@@ -1,0 +1,37 @@
+Suppose that the query to retrieve the first page looks like this:
+//=============================================================================
+GET twitter/_search
+{
+    "size": 10,
+    "query": {
+        "match" : {
+            "title" : "elasticsearch"
+        }
+    },
+    "sort": [
+        {"date": "asc"},
+        {"_id": "desc"}
+    ]
+}
+//=============================================================================
+The result from the above request includes an array of sort values for each document. 
+These sort values can be used in conjunction with the search_after parameter 
+to start returning results "after" any document in the result list. 
+For instance we can use the sort values of the last document and 
+pass it to search_after to retrieve the next page of results:
+//=============================================================================
+GET twitter/_search
+{
+    "size": 10,
+    "query": {
+        "match" : {
+            "title" : "elasticsearch"
+        }
+    },
+    "search_after": [1463538857, "654323"],
+    "sort": [
+        {"date": "asc"},
+        {"_id": "desc"}
+    ]
+}
+//=============================================================================
