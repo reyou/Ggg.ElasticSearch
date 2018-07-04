@@ -34,6 +34,12 @@ export default class InfoLinks extends Component {
               </td>
             </tr>
             <tr>
+              <td>kibana:</td>
+              <td>
+                <a href="http://localhost:5601">http://localhost:5601</a>
+              </td>
+            </tr>
+            <tr>
               <td>health:</td>
               <td>
                 <a href="http://localhost:9200/_cat/health?v">

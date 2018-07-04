@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import appSettings from "../AppSettings.jsx";
 import RequestUtilities from "../Utilities/RequestUtilities.js";
 import ResponsePanel from "../Components/ResponsePanel.jsx";
+import request from "request-promise";
 import $ from "jquery";
 let settings = new appSettings();
 export default class CreateIndex extends Component {
@@ -29,6 +30,37 @@ export default class CreateIndex extends Component {
       url: url
     };
     await RequestUtilities.MakeRequest(this, requestOptions);
+    await this.setStats();
+  }
+  async componentDidMount() {
+    await this.setStats();
+  }
+  async setStats() {
+    let stats = await request(settings.ServerHost + "/_stats?pretty");
+    let statsObj = JSON.parse(stats);
+    let indices = statsObj.indices;
+    let indexArray = [];
+    for (let index in indices) {
+      indexArray.push(index);
+    }
+    this.setState({
+      indexArray: indexArray
+    });
+    $("#indexName").val(indexArray[0]);
+  }
+  async indexDropDownClick(e) {
+    $("#indexName").val(e.target.value);
+  }
+  getIndexDropDown(indexArray) {
+    let indexOptions = null;
+    if (indexArray) {
+      indexOptions = indexArray.map(item => {
+        return <option key={item}>{item}</option>;
+      });
+    }
+    return (
+      <select onChange={e => this.indexDropDownClick(e)}>{indexOptions}</select>
+    );
   }
   render() {
     return (
@@ -49,6 +81,10 @@ export default class CreateIndex extends Component {
         </p>
         <table>
           <tbody>
+            <tr>
+              <td>Indices:</td>
+              <td>{this.getIndexDropDown(this.state.indexArray)}</td>
+            </tr>
             <tr>
               <td>IndexName:</td>
               <td>
